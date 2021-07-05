@@ -9,12 +9,12 @@ public class test : MonoBehaviour
     {
         Board b = new Board();
         b.printBoard();
-        b.addMarker(0,0,1);
-        b.addMarker(0,1,1);
+        b.addMarker(-1,0,1);
+        b.addMarker(0,-1,1);
         b.addMarker(0,2,1);
         b.printBoard();
         print(b.gameCompletion());
-        
+
         b.resetBoard();
         b.printBoard();
         b.addMarker(0,0,2);
@@ -37,13 +37,15 @@ public class test : MonoBehaviour
 
         b.printBoard();
         print(b.gameCompletion());
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if(Input.GetKeyDown(KeyCode.UpArrow)){
+            print(KeyCode.Keypad0);
+        }
         
     }
 }
