@@ -14,6 +14,11 @@ public class Board{
     }
 
     public bool addMarker(int row, int col, int player){
+       
+       if( row == -1 || col == -1){
+           return false;
+       }
+
        if(checkPosition(row, col)){
            gameBoard[row,col] = player;
            return true;
