@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Controller : MonoBehaviour
 {
@@ -45,25 +46,63 @@ public class Controller : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+        if(board.gameCompletion() != 0){
+            return;
+        }
         placement = activePlayer.getMove();
         if(placement != -1)
         {   
             placementMat = arrayToMatrixIdx(placement);
-            //board.printBoard();
-            //print(placement);
-            //print(placementMat[0].ToString()+" "+ placementMat[1].ToString());
             bool markerState = board.addMarker(placementMat[0], placementMat[1], activePlayer.PlayerNum);
-            //print(markerState);
+            
             if(markerState){
-                //print("hej");
-                //board.printBoard();                
-                //visualBoard.cells[placement].GetComponent<VisualCell>().PrintCell();
+                
+                /*if(activePlayer.GetComponent<AIPlayer>() != null){
+                    StartCoroutine(AIDelay(5));
+                    print("AI player");
+
+                }*/
+
                 visualBoard.cells[placement].GetComponent<VisualCell>().SpawnPiece(activePlayer.PlayerSymbol);
                 activePlayer = playerOneTurn ? playerTwo : playerOne;
                 playerOneTurn = !playerOneTurn;
             }   
         }
+        if(board.gameCompletion() != 0){
+            if(board.gameCompletion() == 1){
+                print("Player 1 wins");
+                
+            }
+            else if(board.gameCompletion() == 1){
+                print("Player 2 wins");
+            }
+            else{
+                print("It's a draw");
+            }
+            print("Game restarts...");
+            StartCoroutine(RestartGame(5));
+            
+        }
+
+    }
+
+    /*IEnumerator AIDelay(int time){
+            
+            yield return new WaitForSecondsRealtime(time);
+
+    }*/
+
+    IEnumerator RestartGame(int time){
+            print("Restarting in "+time.ToString()+" seconds");
+            //yield return new WaitForSeconds(time);
+            for(int i=1; i<time; i++){
+                print(i.ToString());
+                yield return new WaitForSeconds(1);
+
+            }
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+     
     }
 
 
