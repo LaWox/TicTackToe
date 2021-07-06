@@ -35,8 +35,10 @@ public class Controller : MonoBehaviour
         // create new player obj and assign numbers
         playerOne = transform.GetChild(0).GetComponent(typeof(LocalPlayer)) as LocalPlayer;
         playerOne.PlayerNum = 1;
+        playerOne.PlayerSymbol="3D Objects/TestCube";
         playerTwo = transform.GetChild(1).GetComponent(typeof(LocalPlayer)) as LocalPlayer;
         playerTwo.PlayerNum = 2;
+        playerTwo.PlayerSymbol="3D Objects/TestCylinder";
         activePlayer = playerOne;
         playerOneTurn = true;
     }
@@ -55,7 +57,7 @@ public class Controller : MonoBehaviour
                 board.printBoard();
                 
                 visualBoard.cells[placement].GetComponent<VisualCell>().PrintCell();
-                visualBoard.cells[placement].GetComponent<VisualCell>().SpawnPiece("3D Objects/TestCube");
+                visualBoard.cells[placement].GetComponent<VisualCell>().SpawnPiece(activePlayer.PlayerSymbol);
                 activePlayer = playerOneTurn ? playerOne : playerTwo;
                 playerOneTurn = !playerOneTurn;
             }   
