@@ -6,19 +6,19 @@ public class VisualCell : MonoBehaviour
 {
 
     public int CellNumber {get; set;}
-    public GameObject Object {get; set;}
+    
 
-    void ChangeAppereance(){
+    public void ChangeAppereance(){
 
     }
 
-    void PrintCell(){
+    public void PrintCell(){
         print("This is cell number: "+CellNumber.ToString());
     }
     
-    void SpawnPiece(string path){
+    public void SpawnPiece(string path){
         GameObject prefab = (GameObject) Resources.Load(path);
-        Vector3 pos = Object.transform.position+ new Vector3(0f,0f,0.2f);
+        Vector3 pos = this.transform.position+ new Vector3(0f,19f,0f);
         Instantiate(prefab, pos, Quaternion.identity);
     }
 }

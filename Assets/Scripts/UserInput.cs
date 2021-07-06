@@ -51,8 +51,9 @@ public class UserInput : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                return -1;
-                //return Debug.Log(hit.transform.gameObject.GetComponent(typeof(visualCell)).cellNumber) - 1;
+                //return -1;
+                Debug.Log(hit.transform.gameObject.name);
+                return (hit.transform.gameObject.GetComponent<VisualCell>()).CellNumber;
             }
         }
         return -1;

@@ -21,14 +21,17 @@ public class Controller : MonoBehaviour
     // board 
     Board board;
     public Board Board{get; set;}
+    VisualBoard visualBoard;
 
     // int to hold on to chosen position
     int placement;
     int[] placementMat;
 
+
     void Start()
-    {
+    {   
         board = new Board();
+        visualBoard = (VisualBoard) GameObject.Find("Board1").GetComponent<VisualBoard>();
         // create new player obj and assign numbers
         playerOne = transform.GetChild(0).GetComponent(typeof(LocalPlayer)) as LocalPlayer;
         playerOne.PlayerNum = 1;
@@ -44,11 +47,15 @@ public class Controller : MonoBehaviour
         placement = activePlayer.getMove();
         if(placement != -1)
         {
+            print(placement);
             placementMat = arrayToMatrixIdx(placement);
 
             if(board.addMarker(placementMat[0], placementMat[1], activePlayer.PlayerNum));
             {
                 board.printBoard();
+                
+                visualBoard.cells[placement].GetComponent<VisualCell>().PrintCell();
+                visualBoard.cells[placement].GetComponent<VisualCell>().SpawnPiece("3D Objects/TestCube");
                 activePlayer = playerOneTurn ? playerOne : playerTwo;
                 playerOneTurn = !playerOneTurn;
             }   
