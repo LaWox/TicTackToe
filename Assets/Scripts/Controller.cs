@@ -20,6 +20,7 @@ public class Controller : MonoBehaviour
     
     // board 
     Board board;
+    public Board Board{get; set;}
 
     // int to hold on to chosen position
     int placement;
@@ -47,13 +48,13 @@ public class Controller : MonoBehaviour
 
             if(board.addMarker(placementMat[0], placementMat[1], activePlayer.PlayerNum));
             {
-                Debug.Log(activePlayer);
                 board.printBoard();
                 activePlayer = playerOneTurn ? playerOne : playerTwo;
                 playerOneTurn = !playerOneTurn;
             }   
         }
     }
+
 
     public int[] arrayToMatrixIdx(int i)
     {

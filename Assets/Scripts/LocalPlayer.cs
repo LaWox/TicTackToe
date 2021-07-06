@@ -13,6 +13,6 @@ public class LocalPlayer : Player
 
     public override int getMove()
     {
-        return userInput.getUserInput();
+        return userInput.GetMouseInteraction();
     }
 }

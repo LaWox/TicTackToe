@@ -43,4 +43,18 @@ public class UserInput : MonoBehaviour
         
         return userInput;
     }
+    public int GetMouseInteraction()
+    {
+        if (Input.GetMouseButtonDown(0)) // if left button pressed...
+        { 
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                return -1;
+                //return Debug.Log(hit.transform.gameObject.GetComponent(typeof(visualCell)).cellNumber) - 1;
+            }
+        }
+        return -1;
+    }
 }
