@@ -64,7 +64,9 @@ public class Board{
                 return gameBoard[0,i];
             }
 
-             // Diagonal row - left oriented
+        }
+
+            // Diagonal row - left oriented
             if((gameBoard[0,0] == gameBoard[1,1]) && (gameBoard[1,1] == gameBoard[2,2])){
                 return gameBoard[0,0];
             }
@@ -74,8 +76,6 @@ public class Board{
             {
                 return gameBoard[2,0];
             }
-
-        }
         
         // Check if it is a draw
         int emptyCells = 0;
