@@ -35,8 +35,10 @@ public class Controller : MonoBehaviour
         // create new player obj and assign numbers
         playerOne = transform.GetChild(0).GetComponent(typeof(LocalPlayer)) as LocalPlayer;
         playerOne.PlayerNum = 1;
+        playerOne.PlayerSymbol="3D Objects/TestCube";
         playerTwo = transform.GetChild(1).GetComponent(typeof(AIPlayer)) as AIPlayer;
         playerTwo.PlayerNum = 2;
+        playerTwo.PlayerSymbol="3D Objects/TestCylinder";
         activePlayer = playerOne;
         playerOneTurn = true;
     }
@@ -46,16 +48,19 @@ public class Controller : MonoBehaviour
     {
         placement = activePlayer.getMove();
         if(placement != -1)
-        {
-            print(placement);
+        {   
+            
             placementMat = arrayToMatrixIdx(placement);
-
-            if(board.addMarker(placementMat[0], placementMat[1], activePlayer.PlayerNum));
-            {
-                board.printBoard();
-                
-                visualBoard.cells[placement].GetComponent<VisualCell>().PrintCell();
-                visualBoard.cells[placement].GetComponent<VisualCell>().SpawnPiece("3D Objects/TestCube");
+            board.printBoard();
+            //print(placement);
+            //print(placementMat[0].ToString()+" "+ placementMat[1].ToString());
+            bool markerState = board.addMarker(placementMat[0], placementMat[1], activePlayer.PlayerNum);
+            //print(markerState);
+            if(markerState){
+                //print("hej");
+                //board.printBoard();                
+                //visualBoard.cells[placement].GetComponent<VisualCell>().PrintCell();
+                visualBoard.cells[placement].GetComponent<VisualCell>().SpawnPiece(activePlayer.PlayerSymbol);
                 activePlayer = playerOneTurn ? playerTwo : playerOne;
                 playerOneTurn = !playerOneTurn;
             }   
@@ -65,7 +70,7 @@ public class Controller : MonoBehaviour
 
     public int[] arrayToMatrixIdx(int i)
     {
-        int row = 0 / 3;
+        int row = i / 3;
         int col = i % 3;
         int[] retArr = {row, col}; 
         return retArr;
