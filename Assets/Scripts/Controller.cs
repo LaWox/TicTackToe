@@ -48,13 +48,18 @@ public class Controller : MonoBehaviour
     {
         placement = activePlayer.getMove();
         if(placement != -1)
-        {
-            print(placement);
+        {   
+            
             placementMat = arrayToMatrixIdx(placement);
-
-            if(board.addMarker(placementMat[0], placementMat[1], activePlayer.PlayerNum));
-            {
+            board.printBoard();
+            print(placement);
+            print(placementMat[0].ToString()+" "+ placementMat[1].ToString());
+            bool markerState = board.addMarker(placementMat[0], placementMat[1], activePlayer.PlayerNum);
+            print(markerState);
+            if(markerState){
+                print("hej");
                 board.printBoard();
+
                 
                 visualBoard.cells[placement].GetComponent<VisualCell>().PrintCell();
                 visualBoard.cells[placement].GetComponent<VisualCell>().SpawnPiece(activePlayer.PlayerSymbol);
@@ -67,7 +72,7 @@ public class Controller : MonoBehaviour
 
     public int[] arrayToMatrixIdx(int i)
     {
-        int row = 0 / 3;
+        int row = i / 3;
         int col = i % 3;
         int[] retArr = {row, col}; 
         return retArr;
