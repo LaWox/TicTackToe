@@ -25,17 +25,16 @@ public class AIPlayer : Player
     {
         int row, col;
         currentBoard = controller.board;
-        //Debug.Log(currentBoard.gameBoard);
-
-        while(true)
+        for(int i = 0; i < 100; i++)
         {
             row = Random.Range(0, 2);
             col = Random.Range(0, 2);
-            if(currentBoard.gameBoard[row, col] == 1)
+            if(currentBoard.gameBoard[row, col] == 0)
             {
                 return row* 3 + col;
             }
         }
+        return -1;
     }
 
     private int CalcScore() // calculates score board state

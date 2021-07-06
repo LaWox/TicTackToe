@@ -49,9 +49,8 @@ public class Controller : MonoBehaviour
         placement = activePlayer.getMove();
         if(placement != -1)
         {   
-            
             placementMat = arrayToMatrixIdx(placement);
-            board.printBoard();
+            //board.printBoard();
             //print(placement);
             //print(placementMat[0].ToString()+" "+ placementMat[1].ToString());
             bool markerState = board.addMarker(placementMat[0], placementMat[1], activePlayer.PlayerNum);
