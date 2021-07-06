@@ -34,6 +34,7 @@ public class Controller : MonoBehaviour
         playerOne.PlayerNum = 1;
         playerOne.PlayerSymbol="3D Objects/TestCube";
 
+
         // assign opponent type
         //Debug.Log(levelData.activeMode);
         switch (levelData.activeMode)
@@ -49,7 +50,7 @@ public class Controller : MonoBehaviour
                 break;
         }
 
-        Debug.Log(playerTwo);
+        //Debug.Log(playerTwo);
 
         playerTwo.PlayerNum = 2;
         playerTwo.PlayerSymbol="3D Objects/TestCylinder";
@@ -71,11 +72,14 @@ public class Controller : MonoBehaviour
             
             if(markerState){
                 
-                /*if(activePlayer.GetComponent<AIPlayer>() != null){
+                /*if(LevelData.GameMode.AI){
                     StartCoroutine(AIDelay(5));
-                    print("AI player");
-
+                    
+                }
+                else{
+                    visualBoard.cells[placement].GetComponent<VisualCell>().SpawnPiece(activePlayer.PlayerSymbol);
                 }*/
+
 
                 visualBoard.cells[placement].GetComponent<VisualCell>().SpawnPiece(activePlayer.PlayerSymbol);
                 activePlayer = playerOneTurn ? playerTwo : playerOne;
@@ -100,11 +104,12 @@ public class Controller : MonoBehaviour
 
     }
 
-    /*IEnumerator AIDelay(int time){
+    IEnumerator AIDelay(int time){
             
             yield return new WaitForSecondsRealtime(time);
+            visualBoard.cells[placement].GetComponent<VisualCell>().SpawnPiece(activePlayer.PlayerSymbol);
 
-    }*/
+    }
 
     IEnumerator RestartGame(int time){
             print("Restarting in "+time.ToString()+" seconds");
