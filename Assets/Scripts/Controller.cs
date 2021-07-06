@@ -87,7 +87,7 @@ public class Controller : MonoBehaviour
                 print("Player 1 wins");
                 
             }
-            else if(board.gameCompletion() == 1){
+            else if(board.gameCompletion() == 2){
                 print("Player 2 wins");
             }
             else{
