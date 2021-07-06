@@ -10,14 +10,7 @@ public class Controller : MonoBehaviour
     Player activePlayer;
     // keep track of player turn 
     bool playerOneTurn;
-    // local, AI, online etc.
-    enum GameMode
-    {
-        Local,
-        AI,
-        Online
-    }
-    GameMode currentMode;
+    LevelData levelData;
     
     // board 
     public Board board;
@@ -33,11 +26,31 @@ public class Controller : MonoBehaviour
     {   
         board = new Board();
         visualBoard = (VisualBoard) GameObject.Find("Board1").GetComponent<VisualBoard>();
+        // Load levelData
+        levelData = Resources.Load<LevelData>("Data/LevelData");
         // create new player obj and assign numbers
-        playerOne = transform.GetChild(0).GetComponent(typeof(LocalPlayer)) as LocalPlayer;
+        playerOne = transform.GetChild(0).GetComponent<LocalPlayer>();
+        //Debug.Log(playerOne);
         playerOne.PlayerNum = 1;
         playerOne.PlayerSymbol="3D Objects/TestCube";
-        playerTwo = transform.GetChild(1).GetComponent(typeof(AIPlayer)) as AIPlayer;
+
+        // assign opponent type
+        //Debug.Log(levelData.activeMode);
+        switch (levelData.activeMode)
+        {
+            case LevelData.GameMode.Local:
+                playerTwo = transform.GetChild(1).gameObject.AddComponent<LocalPlayer>();
+                break;
+            case LevelData.GameMode.AI:
+                playerTwo = transform.GetChild(1).gameObject.AddComponent<AIPlayer>();
+                break;
+            default:
+                playerTwo = transform.GetChild(1).gameObject.AddComponent<LocalPlayer>();
+                break;
+        }
+
+        Debug.Log(playerTwo);
+
         playerTwo.PlayerNum = 2;
         playerTwo.PlayerSymbol="3D Objects/TestCylinder";
         activePlayer = playerOne;
