@@ -32,7 +32,7 @@ public class Controller : MonoBehaviour
         playerOne = transform.GetChild(0).GetComponent<LocalPlayer>();
         //Debug.Log(playerOne);
         playerOne.PlayerNum = 1;
-        playerOne.PlayerSymbol="3D Objects/TestCube";
+        playerOne.PlayerSymbol="3D Objects/apple";
 
         // assign opponent type
         //Debug.Log(levelData.activeMode);
@@ -52,7 +52,7 @@ public class Controller : MonoBehaviour
         Debug.Log(playerTwo);
 
         playerTwo.PlayerNum = 2;
-        playerTwo.PlayerSymbol="3D Objects/TestCylinder";
+        playerTwo.PlayerSymbol="3D Objects/banana";
         activePlayer = playerOne;
         playerOneTurn = true;
     }
