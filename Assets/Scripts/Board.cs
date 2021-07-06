@@ -7,8 +7,8 @@ using System.IO;
 
 public class Board{
 
-    private int[,] gameBoard;
-    public int[,] GameBoard{get; set;}
+    public int[,] gameBoard;
+    //public int[,] GameBoard{get; set;}
 
     public Board(){
         gameBoard = new int[3,3];

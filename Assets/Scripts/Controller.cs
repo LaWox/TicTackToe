@@ -19,8 +19,8 @@ public class Controller : MonoBehaviour
     GameMode currentMode;
     
     // board 
-    Board board;
-    public Board Board{get; set;}
+    public Board board;
+    //public Board Board{get; set;}
     VisualBoard visualBoard;
 
     // int to hold on to chosen position
@@ -35,7 +35,7 @@ public class Controller : MonoBehaviour
         // create new player obj and assign numbers
         playerOne = transform.GetChild(0).GetComponent(typeof(LocalPlayer)) as LocalPlayer;
         playerOne.PlayerNum = 1;
-        playerTwo = transform.GetChild(1).GetComponent(typeof(LocalPlayer)) as LocalPlayer;
+        playerTwo = transform.GetChild(1).GetComponent(typeof(AIPlayer)) as AIPlayer;
         playerTwo.PlayerNum = 2;
         activePlayer = playerOne;
         playerOneTurn = true;
@@ -56,7 +56,7 @@ public class Controller : MonoBehaviour
                 
                 visualBoard.cells[placement].GetComponent<VisualCell>().PrintCell();
                 visualBoard.cells[placement].GetComponent<VisualCell>().SpawnPiece("3D Objects/TestCube");
-                activePlayer = playerOneTurn ? playerOne : playerTwo;
+                activePlayer = playerOneTurn ? playerTwo : playerOne;
                 playerOneTurn = !playerOneTurn;
             }   
         }

@@ -11,6 +11,7 @@ public class VisualBoard : MonoBehaviour
     {
         for(int i=1; i<10; i++){
             var cell = GameObject.Find("Cell"+i.ToString());
+            cell.tag = "Cell";
             cell.AddComponent<VisualCell>();
             cell.GetComponent<VisualCell>().CellNumber=i-1;
             cells[i-1]=cell;

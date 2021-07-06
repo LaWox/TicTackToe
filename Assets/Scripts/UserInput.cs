@@ -49,11 +49,9 @@ public class UserInput : MonoBehaviour
         { 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit) && hit.transform.gameObject.tag == "Cell")
             {
-                //return -1;
-                Debug.Log(hit.transform.gameObject.name);
-                return (hit.transform.gameObject.GetComponent<VisualCell>()).CellNumber;
+               return (hit.transform.gameObject.GetComponent<VisualCell>()).CellNumber;
             }
         }
         return -1;
