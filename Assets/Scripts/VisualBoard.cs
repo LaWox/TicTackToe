@@ -12,6 +12,9 @@ public class VisualBoard : MonoBehaviour
     {
         for(int i=1; i<10; i++){
             var cell = GameObject.Find("Cell"+i.ToString());
+            // remove shadow casting from cells
+            cell.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            // tag the cell
             cell.tag = "Cell";
             cell.AddComponent<VisualCell>();
             cell.GetComponent<VisualCell>().CellNumber=i-1;
