@@ -14,7 +14,7 @@ public class AIPlayer : Player
     // Update is called once per frame
     void Update()
     {
-        
+      // kommentar  
     }
     public override int getMove()
     {
