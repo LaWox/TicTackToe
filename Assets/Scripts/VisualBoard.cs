@@ -6,6 +6,7 @@ public class VisualBoard : MonoBehaviour
 {
 
     public GameObject[] cells = new GameObject[9];
+    public Material cellMaterial;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +15,7 @@ public class VisualBoard : MonoBehaviour
             cell.tag = "Cell";
             cell.AddComponent<VisualCell>();
             cell.GetComponent<VisualCell>().CellNumber=i-1;
+            cell.GetComponent<MeshRenderer>().material=cellMaterial;
             cells[i-1]=cell;
         }
     }
