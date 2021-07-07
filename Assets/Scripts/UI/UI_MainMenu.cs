@@ -19,7 +19,7 @@ public class UI_MainMenu : MonoBehaviour
     {
         // Play Now Button has been pressed, here you can initialize your game (For example Load a Scene called GameLevel etc.)
         levelData.activeMode = LevelData.GameMode.Local;
-        UnityEngine.SceneManagement.SceneManager.LoadScene("PlatonScene");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainScene");
         MainMenu.SetActive(false);
     }
 
@@ -28,7 +28,7 @@ public class UI_MainMenu : MonoBehaviour
         // update GameMode
         levelData.activeMode = LevelData.GameMode.AI;
         // Load next scene
-        UnityEngine.SceneManagement.SceneManager.LoadScene("PlatonScene");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainScene");
         MainMenu.SetActive(false);
     }
 
