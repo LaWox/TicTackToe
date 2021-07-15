@@ -15,5 +15,6 @@ public class DataManager : MonoBehaviour
     void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
+        activeGameMode = GameMode.Local;
     }
 }

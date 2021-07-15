@@ -16,14 +16,17 @@ public class Controller : MonoBehaviour
     [HideInInspector]
     public GameObject playerOneGO, playerTwoGO;
 
+    // Controll the pause state of the game
+    PauseControll pauseControll;
     // keep track of player turn
     Player activePlayer;
-     
     bool playerOneTurn;
     
-    // --------- Networking ----------------
+    // ----------------- Networking ----------------
     NetworkObject localPlayer;
     GameObject playerNMObj;
+    
+    [HideInInspector]
     public PlayerNetworkManager playerNMComponent;
     public HashSet<NetworkObject> spawnedObjects;
 
@@ -43,6 +46,7 @@ public class Controller : MonoBehaviour
     {   
         board = new Board();
         visualBoard = (VisualBoard) GameObject.Find("Board1").GetComponent<VisualBoard>();
+        pauseControll = gameObject.GetComponent<PauseControll>();
         
         // Load levelData
         data = GameObject.Find("DataManager").GetComponent<DataManager>();
@@ -116,6 +120,11 @@ public class Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
+        // skip Update if isPaused
+        if(pauseControll.isPaused)
+        {
+            return;
+        }
         // get move from active player
         UpdateLocal();
       

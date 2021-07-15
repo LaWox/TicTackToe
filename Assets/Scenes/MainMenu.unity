@@ -1342,6 +1342,7 @@ MonoBehaviour:
     RegisteredScenes:
     - MainMenu
     - MainScene
+    - 
     AllowRuntimeSceneChanges: 0
     NetworkPrefabs:
     - Prefab: {fileID: 815250449779296428, guid: 4d28e7e23a74e4e46aac5b40962840fa,
