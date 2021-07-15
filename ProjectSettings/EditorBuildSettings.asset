@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 19f82f680fce5cf4794555e90812b30d
   - enabled: 1
-    path: Assets/Scenes/PlatonScene.unity
-    guid: 61bea50c570d1c641b5a76d2464f7a1e
+    path: Assets/Scenes/MainScene.unity
+    guid: 6cbfcd42249740d459fc2fd2f553eb59
   m_configObjects: {}

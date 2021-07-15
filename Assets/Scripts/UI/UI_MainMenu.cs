@@ -1,24 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class UI_MainMenu : MonoBehaviour
 {
     public GameObject MainMenu;
-    LevelData levelData;
+    public GameObject NetworkMenu;
+    DataManager data;
 
     // Start is called before the first frame update
     void Start()
     {
         MainMenu.SetActive(true);
-        levelData = Resources.Load<LevelData>("Data/LevelData");
-        //Debug.Log(levelData.activeMode);
+        NetworkMenu.SetActive(false);
+        data = GameObject.Find("DataManager").GetComponent<DataManager>();
     }
 
     public void LocalButton()
     {
         // Play Now Button has been pressed, here you can initialize your game (For example Load a Scene called GameLevel etc.)
-        levelData.activeMode = LevelData.GameMode.Local;
+        data.activeGameMode = DataManager.GameMode.Local;
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainScene");
         MainMenu.SetActive(false);
     }
@@ -26,7 +26,7 @@ public class UI_MainMenu : MonoBehaviour
     public void AIButton()
     {
         // update GameMode
-        levelData.activeMode = LevelData.GameMode.AI;
+        data.activeGameMode = DataManager.GameMode.AI;
         // Load next scene
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainScene");
         MainMenu.SetActive(false);
@@ -35,7 +35,9 @@ public class UI_MainMenu : MonoBehaviour
     public void OnlineButton()
     {
         // Show Main Menu
-        MainMenu.SetActive(true);
+        data.activeGameMode = DataManager.GameMode.Online;
+        MainMenu.SetActive(false);
+        NetworkMenu.SetActive(true);  
     }
 
     public void QuitButton()

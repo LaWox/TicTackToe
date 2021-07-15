@@ -8,7 +8,7 @@ public class LocalPlayer : Player
 
     void Start()
     {
-        userInput = gameObject.GetComponentInParent(typeof(UserInput)) as UserInput;
+        userInput = gameObject.GetComponentInParent<UserInput>();
     }
 
     public override int getMove()
