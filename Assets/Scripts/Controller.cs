@@ -31,7 +31,8 @@ public class Controller : MonoBehaviour
     public HashSet<NetworkObject> spawnedObjects;
 
     // ------------- Game Logic --------------------
-    DataManager data;  
+    [HideInInspector]
+    public DataManager data;  
     // board 
     public Board board;
     //public Board Board{get; set;}
