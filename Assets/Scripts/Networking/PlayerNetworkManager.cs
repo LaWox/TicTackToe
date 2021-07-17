@@ -2,6 +2,7 @@
 using MLAPI;
 using MLAPI.Messaging;
 using MLAPI.NetworkVariable;
+using MLAPI.SceneManagement;
 
 // standard
 using System.Collections;
@@ -36,5 +37,11 @@ public class PlayerNetworkManager : NetworkBehaviour
         networkMove.Value = move;
         Debug.Log("new values: " + hostTurn.Value.ToString() + " : " + networkMove.Value.ToString());
         return;
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void UpdateSceneServerRpc()
+    {
+        NetworkSceneManager.SwitchScene("MainScene");
     }
 }
