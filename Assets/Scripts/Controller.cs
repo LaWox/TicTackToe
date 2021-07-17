@@ -23,7 +23,6 @@ public class Controller : MonoBehaviour
     bool playerOneTurn;
     
     // ----------------- Networking ----------------
-    NetworkObject localPlayer;
     GameObject playerNMObj;
     
     [HideInInspector]
@@ -71,13 +70,7 @@ public class Controller : MonoBehaviour
                 playerOne = playerOneGO.AddComponent<LocalPlayer>();
                 playerTwo = playerTwoGO.AddComponent<AIPlayer>();
                 break;
-            case DataManager.GameMode.Online:
-                // get local player object 
-                localPlayer = NetworkSpawnManager.GetLocalPlayerObject();
-                
-                playerOne = playerOneGO.AddComponent<NetworkPlayer>();
-                playerTwo = playerTwoGO.AddComponent<NetworkPlayer>();
-
+            case DataManager.GameMode.Online:   
                 // Place holder for spawned objects
                 spawnedObjects = NetworkSpawnManager.SpawnedObjectsList;
                 if(NetworkManager.Singleton.IsHost)
@@ -96,10 +89,11 @@ public class Controller : MonoBehaviour
                         {
                             playerNMObj = item.gameObject;
                             playerNMComponent = playerNMObj.GetComponent<PlayerNetworkManager>();
-
                         }
                     }
                 }
+                playerOne = playerOneGO.AddComponent<NetworkPlayer>();
+                playerTwo = playerTwoGO.AddComponent<NetworkPlayer>();
                 break;
         }
 
@@ -113,9 +107,7 @@ public class Controller : MonoBehaviour
         
         // first player starts starts as active player
         activePlayer = playerOne;
-        playerOneTurn = true;
-        
-        
+        playerOneTurn = true;        
     }
 
     // Update is called once per frame

@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using MLAPI;
+
 public class UI_ReturnButton : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject NetworkMenu, MainMenu;
+    public GameObject networkMenu, mainMenu, waitForConnection, title;
     void Start()
     {
         
@@ -18,10 +20,21 @@ public class UI_ReturnButton : MonoBehaviour
     }
     public void ReturnButton()
     {
-        if(NetworkMenu.active)
+        if(networkMenu.active || waitForConnection.active)
         {
-            NetworkMenu.active = false;
-            MainMenu.active = true;
+            waitForConnection.active = false;
+            networkMenu.active = false;
+            mainMenu.active = true;
+            title.active = true;
+
+            if(NetworkManager.Singleton.IsServer)
+            {
+                NetworkManager.Singleton.StopHost();
+            }
+            else if(NetworkManager.Singleton.IsClient)
+            {
+                NetworkManager.Singleton.StopClient();
+            }
         }
         else
         {
